@@ -4,9 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:login": "npx cypress run --record --group login --spec \"cypress/e2e/LoginAndPass.cy.js\" --ci-build-id 12",
-    "test:display": "npx cypress run --record --group display --spec \"cypress/e2e/TestDisplay.cy.js\" --ci-build-id 12",
-    "test:parallel": "run-p -c test:login test:display"
+    "test:login:chrome": "cypress run --record --group display:chrome --spec \"cypress/e2e/LoginAndPass.cy.js\" --browser chrome",
+    "test:display:chrome": "cypress run --record --group login:chrome --spec \"cypress/e2e/TestDisplay.cy.js\" --browser chrome",
+    "test:parallel:chrome": "run-p -c test:login:chrome test:display:chrome",
+    "test:login:electron": "cypress run --record --group display:electron --spec \"cypress/e2e/LoginAndPass.cy.js\" --browser electron",
+    "test:display:electron": "cypress run --record --group login:electron --spec \"cypress/e2e/TestDisplay.cy.js\" --browser electron",
+    "test:parallel:electron": "run-p -c test:login:electron test:display:electron",
+    "test:login:msedge": "cypress run --record --group display:msedge --spec \"cypress/e2e/LoginAndPass.cy.js\" --browser \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\"",
+    "test:display:msedge": "cypress run --record --group login:msedge --spec \"cypress/e2e/TestDisplay.cy.js\" --browser \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\"",
+    "test:parallel:msedge": "run-p -c test:login:msedge test:display:msedge",
+    "test:parallel:all": "run-p -c test:parallel:chrome test:parallel:electron"
+    
   },
   "author": "",
   "license": "ISC",
